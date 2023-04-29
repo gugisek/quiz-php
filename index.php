@@ -7,14 +7,14 @@
         <a href="index.php" class="w-1/3 text-center text-xl">QuizPHP</a>
         <a href="login.php" class="w-1/3 text-right hover:font-medium hover:drop-shadow transition-all duration-300">login</a>
     </nav>
-    <section class="flex flex-1 items-center justify-center h-full mb-[40px]">
-        <div class="w-1/2 pl-10">
+    <section class="flex flex-1 md:flex-row flex-col items-center justify-center h-full mb-[40px]">
+        <div class="md:w-1/2 md:pl-10 px-5 md:px-0">
             <h1 class="text-3xl font-bold py-3">Zacznij swój quiz już teraz!</h1>
             <form action="quiz.php">
             <button type="submit" class="rounded-full bg-[#3d3d3d] py-3 px-8 text-white hover:bg-[#fdfdfd] hover:text-[#3d3d3d] hover:shadow-xl transition-all duration-300">START</button>
             </form>
         </div>
-        <div class="w-1/2">
+        <div class="md:w-1/2">
             <div class="flex items-center justify-end pr-10">
                 <div class="flex items-center flex-col">
                     <ul>

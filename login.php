@@ -1,3 +1,8 @@
+<?php session_start();
+    if(isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == true) {
+        header("Location: quiz.php");
+    }
+?>
 <!-- if not logged to pokaz formulaz logowania, a jeśli zalogowany to pokaż historie konta oraz nazwe użytkownika -->
 <!DOCTYPE html>
 <html lang="pl">
@@ -14,7 +19,7 @@
     background: ##f2f2f2;
     box-shadow:  20px 20px 60px #bebebe,
                 -20px -20px 60px #ffffff;">
-        <form method="GET" action = "logowanie-skrypt.php" class="text-center">
+        <form method="GET" action = "login.php" class="text-center">
             <p class="mt-0">Login</p>
             <input type="text" name="login" id="login" class="login-input text-center">
             <p>Hasło</p>
@@ -22,5 +27,41 @@
             <br>
             <button type="submit" id="login-button" class="login-button mt-[10px]">Zaloguj</button>
         </form>
+        <?php
+        // auth.php
+            if(isset($_GET['login']) && isset($_GET['password'])) {
+                $login = $_GET['login'];
+                $password = $_GET['password'];
+                if($login == '') {
+                    echo "
+                    <script>
+                        document.getElementById('login').style.borderBottom = '1px solid red';
+                        document.getElementById('login').placeholder = 'Wpisz login';
+                    </script>
+                    ";
+                }
+                if($password == '') {
+                    echo "
+                    <script>
+                        document.getElementById('password').style.borderBottom = '1px solid red';
+                        document.getElementById('password').placeholder = 'Wpisz hasło';
+                    </script>
+                    ";
+                }
+                if($login != '' && $password != '') {
+                    $conn = mysqli_connect('localhost', 'root', '','quiz');
+                    $query = "SELECT * FROM `login` WHERE `Login` = '$login' AND `Haslo` = '$password'";
+                    $result = mysqli_query($conn, $query);
+                    if(mysqli_num_rows($result) > 0) {
+                        $_SESSION['uzytkownik'] = $login;
+                        $_SESSION['zalogowany'] = true;
+                        header("Location: quiz.php");
+                    } else {
+                        echo "<p class='m-0 mt-30px text-red'>Niepoprawny login lub hasło</p>";
+                    }
+                }
+            }
+            
+        ?>
 </body>
 </html>
