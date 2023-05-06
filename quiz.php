@@ -1,24 +1,66 @@
-<?php session_start();
-    if(isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] !== true) {
+<?php 
+    session_start();
+    if(!isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] !== true) {
         header("Location: login.php");
+        exit;
     }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 <?php include 'head.php'; ?>
 <body>
-    <?php
-        
-        $conn = mysqli_connect('localhost', 'root', '', 'quiz');
-        $sesja_login = $_SESSION['uzytkownik'];
-        $query = "SELECT Imie FROM login WHERE Login = '$sesja_login'";
-        $result = mysqli_query($conn, $query);
-
-        while($row = mysqli_fetch_assoc($result)) {
-            $imie = $row['Imie'];
-            echo "<h1 class='fw-light m-0'>Witaj $imie</h1>";
-        }
-        ?>
-    <a href="logout.php">wyloguj</a>
+    <?php include 'navLogged.php'; ?>
+    
+    <section class="text-gray-600 body-font">
+  <div class="container px-5 py-2 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <?php
+            $conn = mysqli_connect('localhost', 'root', '', 'quiz');
+            $query = "SELECT * FROM testy";
+            $result = mysqli_query($conn, $query);
+            while($row = mysqli_fetch_assoc($result)) {
+                echo '
+                       <div class="p-4 lg:w-1/3">
+                            <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 uppercase">' . $row['kategoria'] . '</h2>
+                            <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">' . $row['Nazwa'] . '</h1>
+                            <p class="leading-relaxed mb-3">' . $row['opis'] . '</p>
+                            <a class="text-indigo-500 inline-flex items-center" href="rozw.php?quiz=' . $row['ID_Testu'] . '&p=1">Zacznij quiz
+                                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+                                <span class="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                ';
+                                $conn = mysqli_connect('localhost', 'root', '', 'quiz');
+                                $nazwa = $row['Nazwa'];
+                                $query2 = "SELECT COUNT(rozwiazania.id) FROM `rozwiazania` join testy on rozwiazania.id_testu = testy.ID_Testu where nazwa='$nazwa';";
+                                $result2 = mysqli_query($conn, $query2);
+                                while($row2 = mysqli_fetch_assoc($result2)) {
+                                    echo $row2['COUNT(rozwiazania.id)'];
+                                } 
+                                echo '
+                                </span>
+                                <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                                </svg>' . $row['Czas_trwania_w_min'] . ' min
+                                </span>
+                            </div>
+                            </div>
+                        </div>         
+                ';
+            }
+            ?>
+    </div>
+  </div>
+</section>
 </body>
 </html>
+

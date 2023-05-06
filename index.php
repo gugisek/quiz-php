@@ -2,14 +2,10 @@
 <html lang="pl">
 <?php include 'head.php'; ?>
 <body class="min-h-screen flex flex-col items-center justify-start">
-    <nav class="font-regular flex items-center justify-center px-10 py-10 w-full">
-        <a href="" class="w-1/3"></a>
-        <a href="index.php" class="w-1/3 text-center text-xl">QuizPHP</a>
-        <a href="login.php" class="w-1/3 text-right hover:font-medium hover:drop-shadow transition-all duration-300">login</a>
-    </nav>
+    <?php include 'nav.php'; ?>
     <section class="flex flex-1 md:flex-row flex-col items-center justify-center h-full mb-[40px]">
         <div class="md:w-1/2 md:pl-10 px-5 md:px-0">
-            <h1 class="text-3xl font-bold py-3">Zacznij swój quiz już teraz!</h1>
+            <h1 class="text-3xl font-bold py-3">Rozwiąż quiz już teraz!</h1>
             <form action="quiz.php">
             <button type="submit" class="rounded-full bg-[#3d3d3d] py-3 px-8 text-white hover:bg-[#fdfdfd] hover:text-[#3d3d3d] hover:shadow-xl transition-all duration-300">START</button>
             </form>
@@ -31,7 +27,7 @@
             <h2 class="text-center pl-10">Nasi najlepsi zawodnicy</h2>
         </div>
     </section>
-    <section class="py-2 text-gray-500">
+    <section class="py-2 text-gray-500 font-light text-sm">
         designed and builded by <a href="">gugisek</a>
     </section>
 </body>
