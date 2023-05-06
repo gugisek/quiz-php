@@ -1,30 +1,37 @@
 <?php session_start();
-    if(isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == true) {
-        header("Location: quiz.php");
-    }
+    
 ?>
-<!-- if not logged to pokaz formulaz logowania, a jeśli zalogowany to pokaż historie konta oraz nazwe użytkownika -->
 <!DOCTYPE html>
 <html lang="pl">
 <?php include 'head.php'; ?>
-<body class="flex flex-col items-center min-h-screen">
+<body class="flex flex-col items-center min-h-screen justify-between">
     <?php include 'nav.php'; ?>
-    <h1 class="font-light m-0 mb-[-30px]">Zaloguj / Rejestruj</h1>
-    <section class="w-[20%] flex flex-col ac jev py-[60px] px-[50px]" style="
-    border-radius: 30px;
-    background: ##f2f2f2;
-    box-shadow:  20px 20px 60px #bebebe,
-                -20px -20px 60px #ffffff;">
-        <form method="GET" action = "login.php" class="text-center">
-            <p class="mt-0">Login</p>
-            <input type="text" name="login" id="login" class="login-input text-center">
-            <p>Hasło</p>
-            <input type="password" name="password" id="password" class="login-input text-center">
-            <br>
-            <button type="submit" id="login-button" class="login-button mt-[10px]">Zaloguj</button>
+    <section class="text-gray-600 body-font">
+        <form method="GET" action = "login.php">
+            <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+                <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+                    <a href="register.php" class="title-font font-medium text-3xl hover:text-gray-900 text-indigo-500 transition-all duration-300">Dołącz do naszego grona rozwiązywaczy quizów!</a>
+                    <p class="leading-relaxed mt-4">Twoje konto umożliwia Ci osiągnięcie pełni umiejętności w quizach i zapisuje Twój progres w chmurze. Bardzo doceniamy Twoje członowstwo w naszych użytkownikach na tej stronie.</p>
+                </div>
+                <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+                    <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Zaloguj się</h2>
+                    <div class="relative mb-4">
+                        <label for="full-name" class="leading-7 text-sm text-gray-600">Login</label>
+                        <input type="text" name="login" id="login" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div class="relative mb-4">
+                        <label for="email" class="leading-7 text-sm text-gray-600">Hasło</label>
+                        <input type="password" name="password" id="password" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <button type="submit" class="rounded-full bg-[#3d3d3d] py-3 px-8 text-white hover:bg-[#fdfdfd] hover:text-[#3d3d3d] hover:shadow-xl transition-all duration-300">Zaloguj się</button>
+                    <p class="text-xs text-gray-500 mt-3">Chcesz się zarejestrować? Zrób to <a href="register.php" class="text-indigo-500">tutaj</a>.</p>
+                    
+                </div>
+            </div>
         </form>
-        <?php
-        // auth.php
+    </section>
+    <?php
+
             if(isset($_GET['login']) && isset($_GET['password'])) {
                 $login = $_GET['login'];
                 $password = $_GET['password'];
@@ -53,11 +60,14 @@
                         $_SESSION['zalogowany'] = true;
                         header("Location: quiz.php");
                     } else {
-                        echo "<p class='m-0 mt-30px text-red'>Niepoprawny login lub hasło</p>";
+                        echo "<p class='mt-5 text-red-400'>Niepoprawny login lub hasło</p>";
                     }
                 }
             }
-            
+            if(isset($_SESSION['zalogowany']) && $_SESSION['zalogowany'] == true) {
+                header("Location: quiz.php");
+            }
         ?>
+<?php include 'footer.php'; ?>
 </body>
 </html>

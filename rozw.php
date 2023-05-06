@@ -9,9 +9,10 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php include 'head.php'; ?>
-<body>
-    <?php include 'navLogged.php'; ?>
+<body class="min-h-screen flex justify-between flex-col">
+    <?php include 'nav.php'; ?>
     <?php
+    $_SESSION['sesja_wynik'] = 0;
     $quiz = $_GET['quiz'];
     $conn = mysqli_connect('localhost', 'root', '', 'quiz');
     $query = "SELECT * FROM `testy` WHERE `ID_Testu` = '$quiz'";
@@ -33,11 +34,10 @@
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-2 mx-auto">
     <div class="flex flex-col text-center w-full mb-10">
-      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1 uppercase"><?=$kategoria?> - <?=$aktualne_pyt?>/<?=$ilosc?></h2>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"><?=$nazwa?></h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base"><?=$opis?></p>
+      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font uppercase"><?=$kategoria?> - <?=$nazwa?> - <?=$aktualne_pyt?>/<?=$ilosc?></h2>
+      
     </div>
-    <h1 class="text-xl text-indigo-500 text-center mb-5">
+    <h1 class="text-gray-900 font-black text-center text-4xl mb-5">
         <?php
         $ak_pyt2 = $aktualne_pyt-1;
         $nast_pyt = $aktualne_pyt+1;
@@ -50,10 +50,11 @@
     ?>
     </h1>
     <form action="?quiz=<?=$quiz?>&p=<?=$nast_pyt?>" method="POST">
-    <div class="flex flex-wrap items-center">
+    <div class="flex flex-wrap items-center py-10">
       <?php 
       $query = "SELECT * FROM `odpowiedzi` WHERE `ID_Pyt` = '$aktualne_pyt_data'";
         $result = mysqli_query($conn, $query);
+        $a = 1;
         while($row = mysqli_fetch_assoc($result)) {
             $tresc = $row['Tresc'];
             $id_odp = $row['ID_odp'];
@@ -61,22 +62,22 @@
             echo '
             <div class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200 border-opacity-60">
                 <h2 class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">' . $tresc . '</h2>
-                <input type="radio" value="' . $poprawna . '" required name="odp-' . $aktualne_pyt . '" id="odp-' . $id_odp . '">
-                    <label for="odp-' . $id_odp . '" class="text-indigo-500 inline-flex items-center">Wybieram
+                <input type="radio" value="' . $id_odp . '" required name="odp-' . $aktualne_pyt . '" id="odp-' . $id_odp . '" class="hidden"></input>
+                    <label for="odp-' . $id_odp . '" class="text-indigo-500 hover:text-indigo-800 hover:cursor-pointer transition-all duration-300 inline-flex items-center">Wybieram
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
                     </label>
-                </input>
+                
             </div>
             ';
+            $a++;
         }
       ?>
       
       
     </div>
-    <button type="submit"
-    class="w-auto flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+    <button type="submit" class="w-auto flex mx-auto mt-5 rounded-full bg-[#3d3d3d] py-3 px-8 text-white hover:bg-[#fdfdfd] hover:text-[#3d3d3d] hover:shadow-xl transition-all duration-300">
     <?php 
         if($aktualne_pyt == $ilosc) {
             echo "Zakończ quiz";
@@ -100,6 +101,7 @@
     </form>
   </div>
 </section>
+<?php include 'footer.php'; ?>
 </body>
 </html>
 

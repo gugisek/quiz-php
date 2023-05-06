@@ -1,7 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Lexend:200,300,400,500,600,700,800,900");
 
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
   font-family: "Lexend";
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 7px;
+    background: #dbdbdbde;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    background-clip: padding-box;
 }
 
 .login-button {
@@ -31,4 +50,13 @@ body {
 }
 .login-input::placeholder{
     color: red;
+}
+
+
+
+input:checked + label {
+    
+    font-size: 20px;
+    border-bottom: #6366f1 1px solid;
+   
 }
