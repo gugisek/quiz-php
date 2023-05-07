@@ -5,7 +5,7 @@
 <html lang="pl">
 <?php include 'head.php'; ?>
 <body class="flex flex-col items-center min-h-screen justify-between">
-    <?php include 'nav.php'; ?>
+    <?php include 'navLogin.php'; ?>
     <section class="text-gray-600 body-font">
         <form method="GET" action = "login.php">
             <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
