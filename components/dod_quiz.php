@@ -58,7 +58,7 @@ echo '
     <input name="action" id="action" value="quiz" type="text" class="hidden">
         <div class="flex flex-col text-center w-full mb-12">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Dodaj nowy QUIZ</h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably havent heard of them man bun deep.</p>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Tutaj dodasz quiz do dostępnych quizów, pytania i odpowiedzi do nich zamieśc potem  wchodząc z panelu admina w odpowiednie kafelki. Uważaj co klikasz, nie poprawimy Twoich błędów jak jakieś zrobisz!</p>
         </div>
         <div class="sm:px-5 flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
             <div class="relative flex-grow w-full">
