@@ -7,9 +7,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="min-h-screen">
-    <?php include 'nav.php'; ?>
+    <?php include 'components/nav.php'; ?>
     <section class="text-gray-600 body-font">
   <div class="container px-5 py-14 mx-auto">
     <div class="text-center mb-20">
@@ -73,7 +73,7 @@
     </div>
   </div>
 </section>
-    <?php include 'footer.php'; ?>
+    <?php include 'components/footer.php'; ?>
 </body>
 </html>
 

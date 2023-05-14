@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="flex flex-col items-center min-h-screen justify-between">
-    <?php include 'navLogin.php'; ?>
+    <?php include 'components/navLogin.php'; ?>
     <section class="text-gray-600 body-font">
         <form method="GET" action = "register.php">
             <div class="container px-5 py-20 mx-auto">
                 <div class="flex flex-col text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Zarejestruj się w naszym serwisie!</h1>
-                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep.</p>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Konto w naszym serwisie pomoże osiągnąc Ci sukces w życiu i w rozwiązywaniu quizów. Badania potwierdzają skuteczność nauki poprzez założenie konta. Masz już konto? <a href="login.php" class="text-indigo-500">Zaloguj się tutaj</a>.</p>
                 </div>
                 <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
                     <div class="relative flex-grow w-full">
@@ -29,7 +29,7 @@
         </form>
     </section>
     <?php
-            session_start();
+            
             if(isset($_GET['login']) && isset($_GET['password'])) {
                 $login = $_GET['login'];
                 $password = $_GET['password'];
@@ -94,6 +94,6 @@
             }
 
         ?>
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>

@@ -8,9 +8,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body>
-    <?php include 'nav.php'; ?>
+    <?php include 'components/nav.php'; ?>
     
     <section class="text-gray-600 body-font">
         <h1 class="text-center text-4xl font-black pt-5 pb-7">
@@ -202,7 +202,7 @@
     </div>
   </div>
 </section>
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>
 

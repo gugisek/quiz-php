@@ -3,9 +3,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="flex flex-col items-center min-h-screen justify-between">
-    <?php include 'navLogin.php'; ?>
+    <?php include 'components/navLogin.php'; ?>
     <section class="text-gray-600 body-font">
         <form method="GET" action = "login.php">
             <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
@@ -68,6 +68,6 @@
                 header("Location: quiz.php");
             }
         ?>
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>

@@ -8,9 +8,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="min-h-screen flex justify-between flex-col">
-    <?php include 'nav.php'; ?>
+    <?php include 'components/nav.php'; ?>
     <?php
     $_SESSION['sesja_wynik'] = 0;
     $quiz = $_GET['quiz'];
@@ -101,7 +101,7 @@
     </form>
   </div>
 </section>
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>
 

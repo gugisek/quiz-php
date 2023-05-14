@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="min-h-screen flex flex-col items-center justify-start">
     <?php 
     session_start();
-    include 'nav.php'; ?>
+    include 'components/nav.php'; ?>
     <section class="text-gray-600 body-font">
   <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col-reverse items-center">
     <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
@@ -109,6 +109,6 @@
     </div>
   </div>
 </section>
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>

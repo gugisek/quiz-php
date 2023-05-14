@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="min-h-screen flex justify-between flex-col">
     <?php 
     session_start();
-    include 'nav.php'; ?>
+    include 'components/nav.php'; ?>
     <section class="text-gray-600 body-font sm:mt-[-100px]">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
@@ -24,6 +24,7 @@
           </div>
           <div class="flex-grow">
             <?php
+            $conn = mysqli_connect('localhost', 'root', '', 'quiz');
             $sql = "SELECT count(*), login.Imie FROM `rozwiazania` join login on rozwiazania.id_login=login.ID where rozwiazania.wynik=100 group by id_login order by count(*) desc limit 6;";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)) {
@@ -56,7 +57,7 @@
           </div>
           <div class="flex-grow">
             <?php
-            $conn = mysqli_connect('localhost', 'root', '', 'quiz');
+            
             $sql = "SELECT count(*), login.Imie FROM `rozwiazania` join login on rozwiazania.id_login=login.ID group by id_login order by count(*) desc limit 6;";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)) {
@@ -113,7 +114,7 @@
     </div>
   </div>
 </section>
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>
 

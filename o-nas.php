@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
-<?php include 'head.php'; ?>
+<?php include 'components/head.php'; ?>
 <body class="min-h-screen flex flex-col items-center justify-between">
     <?php 
     session_start();
-    include 'nav.php'; ?>
+    include 'components/nav.php'; ?>
 <section class="text-gray-600 body-font relative">
   <div class="container px-5 pt-24 pb-10 mx-auto">
     <div class="flex flex-col text-center w-full mb-12">
@@ -55,6 +55,6 @@
 </div>
 </section>
 
-<?php include 'footer.php'; ?>
+<?php include 'components/footer.php'; ?>
 </body>
 </html>
