@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php include 'head.php'; ?>
-<body>
+<body class="min-h-screen flex justify-between flex-col">
     <?php include 'nav.php'; ?>
     <?php
     $quiz = $_GET['quiz'];
@@ -22,7 +22,7 @@
         $kategoria = $row['kategoria'];
     }
     ?>
-    <section class="text-gray-600 body-font">
+    <section class="text-gray-600 body-font sm:mt-[-100px]">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
       <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1"><?=$nazwa?></h2>
@@ -37,15 +37,26 @@
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
               </svg>
             </div>
-            <h2 class="text-gray-900 text-lg title-font font-medium">Najlepsze wyniki</h2>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Najlepsze wyniki - <?=$nazwa?></h2>
           </div>
           <div class="flex-grow">
-            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
+          <?php
+            $sql = "SELECT MAX(wynik), login.Imie FROM `rozwiazania` join login on login.ID = rozwiazania.id_login group by Imie order by MAX(wynik) desc limit 6;";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)) {
+                echo '
+                <div class="flex flex-row justify-between leading-relaxed text-base py-2">
+                  <div class="flex flex-row gap-1 items-center justify-center">
+                  ' . $row['Imie'] . '
+                  </div>
+                  <div>
+                  ' . $row['MAX(wynik)'] . '%
+                  </div>
+                </div>
+                <hr>
+                ';
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -58,15 +69,27 @@
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </div>
-            <h2 class="text-gray-900 text-lg title-font font-medium">Najwięcej rozwiązań</h2>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Najwięcej rozwiązań - <?=$nazwa?></h2>
           </div>
           <div class="flex-grow">
-            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
+          <?php
+            $conn = mysqli_connect('localhost', 'root', '', 'quiz');
+            $sql = "SELECT count(*), login.Imie FROM `rozwiazania` join login on rozwiazania.id_login=login.ID where id_testu = $quiz group by id_login order by count(*) desc limit 6;";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)) {
+                echo '
+                <div class="flex flex-row justify-between leading-relaxed text-base py-2">
+                  <div class="flex flex-row gap-1 items-center justify-center">
+                  ' . $row['Imie'] . '
+                  </div>
+                  <div>
+                  ' . $row['count(*)'] . '
+                  </div>
+                </div>
+                <hr>
+                ';
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -80,21 +103,33 @@
                 <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
               </svg>
             </div>
-            <h2 class="text-gray-900 text-lg title-font font-medium">Neptune</h2>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Średnie wyniki - <?=$nazwa?></h2>
           </div>
           <div class="flex-grow">
-            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
+            <?php
+                $sql = "SELECT round(AVG(wynik), 0) as wynik, login.Imie FROM `rozwiazania` join login on login.ID = rozwiazania.id_login group by Imie order by AVG(wynik) desc limit 6;";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                    <div class="flex flex-row justify-between leading-relaxed text-base py-2">
+                    <div class="flex flex-row gap-1 items-center justify-center">
+                    ' . $row['Imie'] . '
+                    </div>
+                    <div>
+                    ' . $row['wynik'] . '%
+                    </div>
+                    </div>
+                    <hr>
+                    ';
+                }
+                ?>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+<?php include('footer.php'); ?>
 </body>
 </html>
 

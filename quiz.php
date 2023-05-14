@@ -40,6 +40,7 @@
                                 <path d="M12 5l7 7-7 7"></path>
                                 </svg>
                             </span>
+                            
                             <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
                                 <span class="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                                 <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -62,8 +63,9 @@
                                 </svg>' . $row['Czas_trwania_w_min'] . ' min
                                 </span>
                             </div>
+                            
                             </div>
-                        
+                            
                     </a>
                 ';
             }
