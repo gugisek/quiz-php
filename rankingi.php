@@ -8,8 +8,8 @@
     <section class="text-gray-600 body-font sm:mt-[-100px]">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">Użytkownicy QuizPHP - wszystkie quizy</h2>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Ranking naszych użytkowników</h1>
+      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">Ranking naszych użytkowników</h2>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Wszystkie quizy</h1>
     </div>
     <div class="flex flex-wrap -m-4">
       <div class="p-4 md:w-1/3 w-full">
@@ -110,7 +110,14 @@
             ?>
           </div>
         </div>
+        
       </div>
+          <a class="text-indigo-500 inline-flex items-center mt-4 text-center" href="ranking.php?quiz=1">Zobacz rankingi poszczególnych quizów
+            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
     </div>
   </div>
 </section>

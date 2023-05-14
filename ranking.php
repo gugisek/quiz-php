@@ -25,8 +25,8 @@
     <section class="text-gray-600 body-font sm:mt-[-100px]">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1"><?=$nazwa?></h2>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Ranking naszych użytkowników</h1>
+      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">Ranking naszych użytkowników</h2>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900"><?=$nazwa?></h1>
     </div>
     <div class="flex flex-wrap -m-4">
       <div class="p-4 md:w-1/3">
@@ -37,11 +37,11 @@
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
               </svg>
             </div>
-            <h2 class="text-gray-900 text-lg title-font font-medium">Najlepsze wyniki - <?=$nazwa?></h2>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Najlepsze wyniki</h2>
           </div>
           <div class="flex-grow">
           <?php
-            $sql = "SELECT MAX(wynik), login.Imie FROM `rozwiazania` join login on login.ID = rozwiazania.id_login group by Imie order by MAX(wynik) desc limit 6;";
+            $sql = "SELECT MAX(wynik), login.Imie FROM `rozwiazania` join login on login.ID = rozwiazania.id_login where id_testu = $quiz group by Imie order by MAX(wynik) desc limit 6;";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)) {
                 echo '
@@ -69,7 +69,7 @@
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </div>
-            <h2 class="text-gray-900 text-lg title-font font-medium">Najwięcej rozwiązań - <?=$nazwa?></h2>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Najwięcej rozwiązań</h2>
           </div>
           <div class="flex-grow">
           <?php
@@ -103,11 +103,11 @@
                 <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
               </svg>
             </div>
-            <h2 class="text-gray-900 text-lg title-font font-medium">Średnie wyniki - <?=$nazwa?></h2>
+            <h2 class="text-gray-900 text-lg title-font font-medium">Średnie wyniki</h2>
           </div>
           <div class="flex-grow">
             <?php
-                $sql = "SELECT round(AVG(wynik), 0) as wynik, login.Imie FROM `rozwiazania` join login on login.ID = rozwiazania.id_login group by Imie order by AVG(wynik) desc limit 6;";
+                $sql = "SELECT round(AVG(wynik), 0) as wynik, login.Imie FROM `rozwiazania` join login on login.ID = rozwiazania.id_login where id_testu = $quiz group by Imie order by AVG(wynik) desc limit 6;";
                 $result = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_assoc($result)) {
                     echo '
@@ -126,6 +126,22 @@
           </div>
         </div>
       </div>
+      <a class="text-indigo-500 inline-flex items-center mt-4 text-center" href="ranking.php?quiz=<?php
+      $sql = "SELECT count(*) as ile FROM `testy`;";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+
+      if($quiz < $row['ile']) {
+        echo $quiz + 1;
+      } else {
+        echo 1;
+      }
+      ?>">Zobacz rankingi dla kolejnego quizu
+            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
     </div>
   </div>
 </section>

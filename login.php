@@ -58,7 +58,16 @@
                     if(mysqli_num_rows($result) > 0) {
                         $_SESSION['uzytkownik'] = $login;
                         $_SESSION['zalogowany'] = true;
+                   
+                        $query = "SELECT * FROM `login` WHERE `Login` = '$login' AND `Rola` = 'admin'";
+                        $result = mysqli_query($conn, $query);
+                        if(mysqli_num_rows($result) > 0) {
+                            $_SESSION['admin'] = true;
+                            header("Location: admin.php?action=");
+                            exit();
+                        }
                         header("Location: quiz.php");
+                        
                     } else {
                         echo "<p class='mt-5 text-red-400'>Niepoprawny login lub hasło</p>";
                     }

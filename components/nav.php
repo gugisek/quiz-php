@@ -9,6 +9,11 @@
       <a class="mr-5 hover:text-indigo-500 hover:scale-105 transition-all duration-300" href="rankingi.php">Ranking</a>
       <a class="mr-5 hover:text-indigo-500 hover:scale-105 transition-all duration-300" href="o-nas.php#o-nas">O nas</a>
       <a class="mr-5 hover:text-indigo-500 hover:scale-105 transition-all duration-300" href="o-nas.php">Kontakt</a>
+      <?php 
+      if($_SESSION['admin'] = 'true') {
+          echo '<a class="mr-5 hover:text-indigo-500 hover:scale-105 transition-all duration-300" href="admin.php?action=">Panel</a>';
+      }
+      ?>
     </nav>
     <?php
                     

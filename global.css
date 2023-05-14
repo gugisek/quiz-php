@@ -60,3 +60,6 @@ input:checked + label {
     border-bottom: #6366f1 1px solid;
    
 }
+tbody {
+    width: 100%;
+}
